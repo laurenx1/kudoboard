@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
-import './SearchBar.css'
 
 const SearchBar = (props) => {
 
@@ -10,7 +9,7 @@ const SearchBar = (props) => {
     }
 
     return (
-      <div className="search-form">
+      <>
         <form className="search-bar">
           <label htmlFor="search"></label>
           <input id="search" 
@@ -18,10 +17,24 @@ const SearchBar = (props) => {
             pattern=".*\S.*" 
             required value={props.query} 
             onChange={onChange} 
-            placeholder="Search Boards..."/>
-          <span className="caret"></span>
+            placeholder="Search Boards..."
+            style={{width: 600, height:40}}
+            />
         </form>
-      </div>
+
+        <div id='categories' style={{padding: '20px', display: 'flex', gap: '20px'}}>
+          <button style={{border: 'groove'}}>All</button>
+          <button style={{border: 'groove'}}>Recent</button>
+          <button style={{border: 'groove'}}>Celebration</button>
+          <button style={{border: 'groove'}}>Thank you</button>
+          <button style={{border: 'groove'}}>Inspiration</button>
+        </div>
+
+        <div>
+          <button style={{border: 'groove'}}>Create a New Board</button>
+        </div>
+
+      </>
     );
   }
   export default SearchBar;
