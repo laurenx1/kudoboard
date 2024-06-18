@@ -14,19 +14,22 @@ datasource db {
 }
 
 model Board {
-  id Int @id @default(autoincreament())
-  title String 
-  author String?
+  id          Int    @id @default(autoincrement()) // Corrected typo in autoincrement
+  title       String 
+  author      String?
   description String
-  category String
-  image String
+  category    String
+  image       String
+  cards       Card[] // Relation to cards
 }
 
 model Card {
-  board String
-  title String
+  id          Int    @id @default(autoincrement()) // Added an ID field for uniqueness
+  boardId     Int    // Foreign key to relate to Board
+  title       String 
   description String
-  author String?
-  upvotes Int
-  gif String
+  author      String?
+  upvotes     Int    @default(0) // Default value for upvotes
+  gif         String
+  board       Board  @relation(fields: [boardId], references: [id]) // Relation to board
 }

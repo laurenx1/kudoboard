@@ -5,8 +5,12 @@ const SearchBar = (props) => {
 
     const onChange = (e) => {
         props.setQuery(e.target.value);
-        console.log(e.target.value)
+        console.log(e.target.value);
     }
+
+    const handleShowForm = () => {
+      props.setCreateNew(true);
+  }
 
     return (
       <>
@@ -31,8 +35,9 @@ const SearchBar = (props) => {
         </div>
 
         <div>
-          <button style={{border: 'groove'}}>Create a New Board</button>
+          <button style={{border: 'groove'}} onClick={handleShowForm}>Create a New Board</button>
         </div>
+        
 
       </>
     );
