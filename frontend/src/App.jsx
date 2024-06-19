@@ -12,6 +12,19 @@ function App() {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState('');
   const [createNew, setCreateNew] = useState(false);
+  const [boards, setBoards] = useState([])
+  const [imageCounter, setImageCounter] = useState(1); 
+
+  const addBoard = (newBoard) => {
+    const imageUrl = `https://picsum.photos/200/300?random=${imageCounter}`
+    setBoards([...boards, {...newBoard, imageUrl }])
+    setImageCounter(imageCounter + 1)
+  }
+
+  const deleteBoard = (index) => {
+    const updatedBoards = boards.filter((_, i) => i !== index); 
+    srtBoards(updatedBoards)
+  }
 
   useEffect(() => {
     // code here
@@ -26,8 +39,8 @@ function App() {
           setFilter={setFilter} 
           setCreateNew={setCreateNew}>
         </SearchBar>
-        {createNew && <NewBoardForm setCreateNew={setCreateNew} ></NewBoardForm>}
-        <BoardList></BoardList>
+        {createNew && <NewBoardForm setCreateNew={setCreateNew} addBoard={addBoard} ></NewBoardForm>}
+        <BoardList boards={boards} onDeleteBoard={deleteBoard}></BoardList>
       </div>
     </>
   )

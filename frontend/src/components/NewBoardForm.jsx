@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import './NewBoardForm.css'
 // https://kudos-board-exemplar.onrender.com/
 
-const NewBoardForm = ({ setCreateNew }) => {
+const NewBoardForm = ({ setCreateNew, addBoard }) => {
     // state for form fields
     const [title, setTitle] = useState(''); 
     const [category, setCategory] = useState('');
@@ -21,6 +21,8 @@ const NewBoardForm = ({ setCreateNew }) => {
       event.preventDefault(); 
 
       console.log({title, category, author});
+      const newBoard = {title, category, author}; 
+      addBoard(newBoard); 
       setTitle('');
       setCategory('');
       setAuthor('')
@@ -30,7 +32,7 @@ const NewBoardForm = ({ setCreateNew }) => {
     return (
       <div className='overlay'>
         <div className='new-board-form'>
-          <button class='close-btn' onClick={handleClose}>X</button>
+          <button className='close-btn' onClick={handleClose}>X</button>
           <h2>Create a New Board</h2>
           <form onSubmit={handleSubmit}>
           <label>Title:</label>

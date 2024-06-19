@@ -1,0 +1,42 @@
+.board {
+    border: 1px solid #ccc; 
+    padding: 20px; 
+    border-radius: 10px; 
+    background-color: #fff;
+    text-align: center; 
+}
+
+.board img {
+    width: 100%; 
+    height: auto;
+    border-radius: 10px; 
+    margin-bottom: 10px; 
+}
+
+.board h3 {
+    margin: 10px 0;
+}
+
+.board p {
+    margin: 5px 0;
+}
+
+.view-btn, 
+.delete-btn {
+    display: inline-block; 
+    padding: 10px 20px; 
+    margin: 5px;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+.view-btn {
+    background-color: #f0f0f0;
+}
+
+.delete-btn {
+    background-color: teal;
+    color: white; 
+}
+
