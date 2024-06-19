@@ -1,9 +1,11 @@
 import { useState, useEffect} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
+
 import SearchBar from './components/SearchBar'
 import NewBoardForm from './components/NewBoardForm'
+import BoardList from './components/BoardList'
+
 import img from './assets/kudoboard_logo.png'
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
           setCreateNew={setCreateNew}>
         </SearchBar>
         {createNew && <NewBoardForm setCreateNew={setCreateNew} ></NewBoardForm>}
+        <BoardList></BoardList>
       </div>
     </>
   )

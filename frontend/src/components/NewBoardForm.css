@@ -10,7 +10,7 @@ body {
       background-color: #fff;
       padding: 20px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
+      z-index: 1001;
       max-width: 400px;
       width: 100%;
       z-index: 1001;
@@ -23,12 +23,18 @@ body {
     .new-board-form label {
       display: block;
       margin-bottom: 5px;
+      font-weight: bold;
+      text-align: left; 
     }
     
-    .new-board-form input , select {
-      width: 90%;
-      padding: 8px;
+    .new-board-form input, 
+    .new-board-form select {
+      width: 100%;
+      padding: 10px;
       margin-bottom: 15px;
+      border: 1px solid #ccc; 
+      border-radius: 4px; 
+      box-sizing: border-box; 
     }
     
     .submit {
@@ -39,6 +45,10 @@ body {
       border: none;
       border-radius: 5px;
       cursor: pointer;
+    }
+
+    .submit:hover {
+      background-color: darkslategray;
     }
     
     .overlay {
@@ -64,4 +74,8 @@ body {
       color: #333;
       padding: 0; 
       background-color: none;
+    }
+
+    .close-btn:hover {
+      color: red; 
     }
