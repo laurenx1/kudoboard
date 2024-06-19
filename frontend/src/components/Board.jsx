@@ -2,6 +2,10 @@ import React from 'react'
 import './Board.css'
 
 const Board = ({ title, category, author, imageUrl, onDeleteBoard }) => {
+    const handleDelete = () => {
+        onDeleteBoard(); 
+    }
+
     console.log(imageUrl)
     return (
         <div className='board'>
@@ -9,8 +13,10 @@ const Board = ({ title, category, author, imageUrl, onDeleteBoard }) => {
             <h3>{title}</h3>
             <p>{category}</p>
             <p>{author}</p>
-            <button className='view-btn'>View Board</button>
-            <button className='delete-btn' onClick={onDeleteBoard}>Delete Board</button>
+            <div className='btn-container'>
+                <button className='view-btn'>View Board</button>
+                <button className='delete-btn' onClick={handleDelete}>Delete Board</button>
+            </div>
         </div>
     );
 };

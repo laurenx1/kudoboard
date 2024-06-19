@@ -10,14 +10,14 @@ const BoardList = ({boards, onDeleteBoard}) => {
       <>
       <div className='board-list'>
         {boards.map((board, index) => (
-          <Board>
+          <Board
             key={index}
             index={index}
             title={board.title}
             category={board.category}
             author={board.author}
             imageUrl={board.imageUrl}
-            onDeleteBoard={() => onDeleteBoard(index)}
+            onDeleteBoard={() => onDeleteBoard(index)}>
           </Board>
 
         ))}

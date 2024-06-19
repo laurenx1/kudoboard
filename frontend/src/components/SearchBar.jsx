@@ -26,7 +26,7 @@ const SearchBar = (props) => {
             />
         </form>
 
-        <div id='categories' style={{padding: '20px', display: 'flex', gap: '20px'}}>
+        <div id='categories' style={{padding: '20px', display: 'flex', gap: '20px', justifyContent: 'center'}}>
           <button style={{border: 'groove'}}>All</button>
           <button style={{border: 'groove'}}>Recent</button>
           <button style={{border: 'groove'}}>Celebration</button>

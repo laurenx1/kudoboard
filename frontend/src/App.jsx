@@ -12,7 +12,7 @@ function App() {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState('');
   const [createNew, setCreateNew] = useState(false);
-  const [boards, setBoards] = useState([])
+  const [boards, setBoards] = useState([]);
   const [imageCounter, setImageCounter] = useState(1); 
 
   const addBoard = (newBoard) => {
@@ -23,7 +23,7 @@ function App() {
 
   const deleteBoard = (index) => {
     const updatedBoards = boards.filter((_, i) => i !== index); 
-    srtBoards(updatedBoards)
+    setBoards(updatedBoards)
   }
 
   useEffect(() => {
