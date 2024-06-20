@@ -68,7 +68,6 @@ app.post('/boards', async(req, res) => {
         description,
         category,
         image,
-        cards,
       },
     });
     res.json(newBoard);
@@ -96,43 +95,72 @@ app.delete('/boards/:id', async (req, res) => {
 });
 
 
-// go to view board's cards
-app.get('boards/cards/:boardId', async (req, res) => {
-  const boardId = parseInt(req.params.boardId)
-  const cards = await prisma.card.findMany({
-    where: {
-      boardId: boardId
-    },
-    orderBy: {
-      id: 'desc'
-    }
-  });
-  res.json(cards);
-})
+// // Get all cards for a specific board
+// app.get('boards/:boardId/cards', async (req, res) => {
+//   const boardId = parseInt(req.params.boardId); 
+//   try {
+//     const cards = await prisma.card.findMany({
+//       where: { boardId: parseInt(boardId, 10) }, 
+//       orderBy: { id: 'desc' }
+//     });
+//     res.json(cards); 
+//   } catch (error) {
+//     console.error('Error fetching cards:', error)
+//     res.status(500).json({ error: 'Internal server error'})
+//   }
+// })
 
 
-// delete a card
-app.delete('/card/:id', async (req, res) => {
-  const cardId = parseInt(req.params.id);
-  const card = await prisma.card.findUnique({
-    where: {id: cardId}
-  });
-  res.status(204).send()
-});
+
+// // create a new card 
+// app.post('boards/:boardId/cards', async (req, res) => {
+//   const { boardId } = req.params; 
+//   const { title, description, author, gif } = req.body;
+//   try {
+//     const newCard = await prisma.card.create({
+//       data: {
+//         boardId: parseInt(boardId, 10), 
+//         title, 
+//         description, 
+//         author, 
+//         gif,
+//       }, 
+//     });
+//     res.json(newCard)
+//   } catch (error) {
+//     console.error('Error creating card:', error);
+//     res.status(500).json({ error: 'Internal server error'})
+//   }
+// }); 
 
 
-// change the number of upvotes a card has
-app.patch('/card/:id', async (req, res) => {
-  const cardId = parseInt(req.params.id);
-  const newUpvotes = parseInt(req.query.upvotes);
+// // delete a card
+// app.delete('/cards/:id', async (req, res) => {
+//   const cardId = parseInt(req.params.id);
+//   try {
+//     await prisma.card.delete({
+//       where: { id: cardId }
+//     });
+//     res.status(204).send();
+//   } catch (error) {
+//     console.error('Error deleting card:', error);
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// });
 
-  const updateCard = await prisma.card.update({
-    where: {
-      id: cardId,
-    }, 
-    data: {
-      upvotes: newUpvotes
-    },
-  })
-  res.status(204).send();
-});
+
+// // change the number of upvotes a card has
+// app.patch('/cards/:id', async (req, res) => {
+//   const cardId = parseInt(req.params.id);
+//   const newUpvotes = parseInt(req.query.upvotes);
+
+//   const updateCard = await prisma.card.update({
+//     where: {
+//       id: cardId,
+//     }, 
+//     data: {
+//       upvotes: newUpvotes
+//     },
+//   })
+//   res.status(204).send();
+// });

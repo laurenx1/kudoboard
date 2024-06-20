@@ -31,5 +31,5 @@ model Card {
   author      String?
   upvotes     Int    @default(0) // Default value for upvotes
   gif         String
-  board       Board  @relation(fields: [boardId], references: [id], onDelete: Cascade) // Relation to board
+  board       Board  @relation(fields: [boardId], references: [id]) // Relation to board
 }

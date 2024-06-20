@@ -57,26 +57,7 @@ const NewBoardForm = ({ setCreateNew, addBoard }) => {
         </form>
         </div>
       </div>
-        // <Modal show={true} onHide={handleClose} centered>
-        //     <Modal.Header closeButton>
-        //         <Modal.Title>Create New Board</Modal.Title>
-        //     </Modal.Header>
-        //     <Modal.Body>
-        //         <p>Hello! Please enter the details for the new board.</p>
-        //         {/* Form elements can be added here */}
-        //     </Modal.Body>
-        //     <Modal.Footer>
-        //         <Button variant="secondary" onClick={handleClose}>
-        //             Close
-        //         </Button>
-        //         <Button variant="primary" onClick={() => {
-        //             // Logic to handle board creation
-        //             handleClose();
-        //         }}>
-        //             Save Changes
-        //         </Button>
-        //     </Modal.Footer>
-        // </Modal>
+
     );
 }
 export default NewBoardForm;
