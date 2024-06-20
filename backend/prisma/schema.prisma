@@ -27,7 +27,7 @@ model Card {
   id          Int    @id @default(autoincrement()) // Added an ID field for uniqueness
   boardId     Int    // Foreign key to relate to Board
   title       String 
-  description String
+  description String?
   author      String?
   upvotes     Int    @default(0) // Default value for upvotes
   gif         String
