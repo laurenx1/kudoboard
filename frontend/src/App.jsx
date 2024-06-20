@@ -32,7 +32,7 @@ function App() {
       .then(response => response.json())
       .then(data => setBoards(data))
       .catch(error => console.error('Error fetching boards:', error));
-  }, [boards ,query, filter])
+  }, [query, filter])
 
   // func to fetch boards from backend
   // const fetchBoards = async () => {
@@ -50,6 +50,7 @@ function App() {
       headers: {
         'Content-Type': 'application/json'
       },
+      
       body: JSON.stringify(newBoard)
     })
      .then(response => response.json())
@@ -59,7 +60,9 @@ function App() {
 
   const deleteBoard = async (boardId) => {
     try {
-      await axios.delete(`http://localhost:3000/boards${boardId}`);
+      await fetch(`http://localhost:3000/boards/${boardId}`, {
+        method: 'DELETE'
+      });
       const updatedBoards = boards.filter((board) => board.id !== boardId);
       setBoards(updatedBoards);
     } catch (error) {

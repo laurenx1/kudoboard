@@ -27,7 +27,7 @@ app.get('/boards', async (req, res) => {
 }); 
 
 // create a new board
-app.post('./boards', async(req, res) => {
+app.post('/boards', async(req, res) => {
   const { title, author, description, category, image } = req.body;
   try {
     const newBoard = await prisma.board.create({
@@ -50,7 +50,7 @@ app.post('./boards', async(req, res) => {
 app.delete('/boards/:id', async (req, res) => {
   const { id } = req.params; 
   try {
-    const deletedBoard= await prisma.board.delete({
+    const deletedBoard = await prisma.board.delete({
       where: {
         id: parseInt(id, 10),
       },
