@@ -28,7 +28,11 @@ function App() {
   // }
 
   useEffect(() => {
-    fetch('http://localhost:3000/boards')
+    let url = 'http://localhost:3000/boards'
+    if (filter !== '' && filter != 'All') {
+      url += `?category=${filter}`;
+    }
+    fetch(url)
       .then(response => response.json())
       .then(data => setBoards(data))
       .catch(error => console.error('Error fetching boards:', error));

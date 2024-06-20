@@ -17,8 +17,18 @@ app.use(cors());
 
 // get all boards
 app.get('/boards', async (req, res) => {
+  const { category } = req.query
   try {
-    const boards = await prisma.board.findMany();
+    let boards; 
+    if (category) {
+      boards = await prisma.board.findMany({
+        where: {
+          category: category
+        }
+      });
+    } else {
+      boards = await prisma.board.findMany();
+    }
     res.json(boards);
   } catch (error) {
     console.error('Error fetching boards: ', error); 
@@ -61,6 +71,3 @@ app.delete('/boards/:id', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' })
   }
 });
-
-
-

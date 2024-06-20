@@ -12,6 +12,11 @@ const SearchBar = (props) => {
       props.setCreateNew(true);
   }
 
+  const handleFiltering = (e) => {
+    console.log(e.target.value);
+    props.setFilter(e.target.value);
+  }
+
     return (
       <>
         <form className="search-bar">
@@ -27,11 +32,11 @@ const SearchBar = (props) => {
         </form>
 
         <div id='categories' style={{padding: '20px', display: 'flex', gap: '20px', justifyContent: 'center'}}>
-          <button style={{border: 'groove'}}>All</button>
-          <button style={{border: 'groove'}}>Recent</button>
-          <button style={{border: 'groove'}}>Celebration</button>
-          <button style={{border: 'groove'}}>Thank you</button>
-          <button style={{border: 'groove'}}>Inspiration</button>
+          <button style={{border: 'groove'}} value='All' onClick={handleFiltering}>All</button>
+          <button style={{border: 'groove'}} value='Recent' onClick={handleFiltering}>Recent</button>
+          <button style={{border: 'groove'}} value= 'Celebration' onClick={handleFiltering}>Celebration</button>
+          <button style={{border: 'groove'}} value= 'Thank You' onClick={handleFiltering}>Thank you</button>
+          <button style={{border: 'groove'}} value= 'Inspiration' onClick={handleFiltering}>Inspiration</button>
         </div>
 
         <div>
