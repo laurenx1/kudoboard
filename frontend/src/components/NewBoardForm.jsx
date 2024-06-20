@@ -9,6 +9,8 @@ const NewBoardForm = ({ setCreateNew, addBoard }) => {
     const [title, setTitle] = useState(''); 
     const [category, setCategory] = useState('');
     const [author, setAuthor] = useState('');
+    const [description, setDescription] = useState('');
+    const [image, setImage] = useState('');
 
 
 
@@ -21,11 +23,13 @@ const NewBoardForm = ({ setCreateNew, addBoard }) => {
       event.preventDefault(); 
 
       console.log({title, category, author});
-      const newBoard = {title, category, author}; 
+      const newBoard = { title, author, description, category, image: `http://picsum.photos/200/300?random=${Math.floor(Math.random() * 1000)}` }; 
       addBoard(newBoard); 
       setTitle('');
       setCategory('');
       setAuthor('')
+      setDescription('');
+      setImage('');
       handleClose();
     }
 
@@ -47,6 +51,8 @@ const NewBoardForm = ({ setCreateNew, addBoard }) => {
           </select>
           <label>Author:</label>
           <input type='text' value={author} onChange={(e) => setAuthor(e.target.value)}/>
+          <label>Description:</label>
+          <textarea value={description} onChange={(e) => setDescription(e.target.value)}/>
           <button className='submit' type='submit'>Create Board</button>
         </form>
         </div>

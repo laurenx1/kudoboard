@@ -1,4 +1,5 @@
-import { useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios';
 
 import './App.css'
 
@@ -15,20 +16,56 @@ function App() {
   const [boards, setBoards] = useState([]);
   const [imageCounter, setImageCounter] = useState(1); 
 
-  const addBoard = (newBoard) => {
-    const imageUrl = `https://picsum.photos/200/300?random=${imageCounter}`
-    setBoards([...boards, {...newBoard, imageUrl }])
-    setImageCounter(imageCounter + 1)
-  }
+  // const addBoard = (newBoard) => {
+  //   const imageUrl = `https://picsum.photos/200/300?random=${imageCounter}`
+  //   setBoards([...boards, {...newBoard, imageUrl }])
+  //   setImageCounter(imageCounter + 1)
+  // }
 
-  const deleteBoard = (index) => {
-    const updatedBoards = boards.filter((_, i) => i !== index); 
-    setBoards(updatedBoards)
-  }
+  // const deleteBoard = (index) => {
+  //   const updatedBoards = boards.filter((_, i) => i !== index); 
+  //   setBoards(updatedBoards)
+  // }
 
   useEffect(() => {
-    // code here
-  }, [query, filter])
+    fetch('http://localhost:3000/boards')
+      .then(response => response.json())
+      .then(data => setBoards(data))
+      .catch(error => console.error('Error fetching boards:', error));
+  }, [boards ,query, filter])
+
+  // func to fetch boards from backend
+  // const fetchBoards = async () => {
+  //   try {
+  //     const response = await axios.get('http://localhost:3000/boards') // replace with backend URL
+  //     setBoards(response.data);
+  //   } catch (error) {
+  //     console.error('Error fetching boards', error)
+  //   }
+  // };
+
+  const addBoard = async (newBoard) => {
+    fetch('http://localhost:3000/boards', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newBoard)
+    })
+     .then(response => response.json())
+     .then(data => setBoards([...boards, data]))
+     .catch(error => console.error('Error adding board:', error));
+  };
+
+  const deleteBoard = async (boardId) => {
+    try {
+      await axios.delete(`http://localhost:3000/boards${boardId}`);
+      const updatedBoards = boards.filter((board) => board.id !== boardId);
+      setBoards(updatedBoards);
+    } catch (error) {
+      console.error('Error deleting board:', error);
+    }
+  }
 
   return (
     <>

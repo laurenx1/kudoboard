@@ -4,7 +4,6 @@ import Board from './Board'
 import './BoardList.css'
 
 const BoardList = ({boards, onDeleteBoard}) => {
-  console.log(boards);
 
     return (
       <>
