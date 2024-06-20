@@ -23,7 +23,7 @@ const NewBoardForm = ({ setCreateNew, addBoard }) => {
       event.preventDefault(); 
 
       console.log({title, category, author});
-      const newBoard = { title, author, description, category, image: `http://picsum.photos/200/300?random=${Math.floor(Math.random() * 1000)}` }; 
+      const newBoard = { title, author, description, category, image: `http://picsum.photos/200/300?random=${Math.floor(Math.random() * 1000)}`, cards: []}; 
       addBoard(newBoard); 
       setTitle('');
       setCategory('');

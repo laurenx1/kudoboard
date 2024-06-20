@@ -16,20 +16,13 @@ function App() {
   const [boards, setBoards] = useState([]);
   const [imageCounter, setImageCounter] = useState(1); 
 
-  // const addBoard = (newBoard) => {
-  //   const imageUrl = `https://picsum.photos/200/300?random=${imageCounter}`
-  //   setBoards([...boards, {...newBoard, imageUrl }])
-  //   setImageCounter(imageCounter + 1)
-  // }
-
-  // const deleteBoard = (index) => {
-  //   const updatedBoards = boards.filter((_, i) => i !== index); 
-  //   setBoards(updatedBoards)
-  // }
 
   useEffect(() => {
     let url = 'http://localhost:3000/boards'
-    if (filter !== '' && filter != 'All') {
+    if (query) {
+      url += `?query=${encodeURIComponent(query)}`;
+    }
+    else if (filter !== '' && filter != 'All') {
       url += `?category=${filter}`;
     }
     fetch(url)
@@ -38,15 +31,6 @@ function App() {
       .catch(error => console.error('Error fetching boards:', error));
   }, [query, filter])
 
-  // func to fetch boards from backend
-  // const fetchBoards = async () => {
-  //   try {
-  //     const response = await axios.get('http://localhost:3000/boards') // replace with backend URL
-  //     setBoards(response.data);
-  //   } catch (error) {
-  //     console.error('Error fetching boards', error)
-  //   }
-  // };
 
   const addBoard = async (newBoard) => {
     fetch('http://localhost:3000/boards', {
@@ -62,6 +46,7 @@ function App() {
      .catch(error => console.error('Error adding board:', error));
   };
 
+  
   const deleteBoard = async (boardId) => {
     try {
       await fetch(`http://localhost:3000/boards/${boardId}`, {

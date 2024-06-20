@@ -1,20 +1,20 @@
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
 
-const SearchBar = (props) => {
+const SearchBar = ({ setQuery, setFilter, setCreateNew }) => {
 
     const onChange = (e) => {
-        props.setQuery(e.target.value);
+        setQuery(e.target.value);
         console.log(e.target.value);
     }
 
     const handleShowForm = () => {
-      props.setCreateNew(true);
+      setCreateNew(true);
   }
 
   const handleFiltering = (e) => {
     console.log(e.target.value);
-    props.setFilter(e.target.value);
+    setFilter(e.target.value);
   }
 
     return (
@@ -24,7 +24,7 @@ const SearchBar = (props) => {
           <input id="search" 
             type="search" 
             pattern=".*\S.*" 
-            required value={props.query} 
+            required
             onChange={onChange} 
             placeholder="Search Boards..."
             style={{width: 600, height:40}}
