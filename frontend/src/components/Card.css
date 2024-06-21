@@ -6,23 +6,24 @@
     text-align: center;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
-
+.card:hover {
+    transform: scale(1.05);
+    background-color: #f0f0f0;
+}
 .card-gif {
     max-width: 100%; 
     height: auto; 
     border-radius: 8px;
 }
-
 .card h3 {
     margin-top: 8px;
     font-size: 1.2em;
 }
-
 .card p {
     margin: 4px 0;
 }
-
 .card button {
     margin: 4px 8px; 
     padding: 8px 16px; 
@@ -32,7 +33,6 @@
     color: #fff; 
     cursor: pointer; 
 }
-
 .card button:hover {
     background-color: #0056b3;
 }

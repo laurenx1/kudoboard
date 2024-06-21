@@ -10,6 +10,8 @@ import BoardList from './components/BoardList'
 import ViewBoard from './components/ViewBoard'
 
 import img from './assets/kudoboard_logo.png'
+// import githubPfp from './assets/github_pfp.png'
+import gitLogo from './assets/github_logo_1.png'
 
 function App() {
   const [query, setQuery] = useState('');
@@ -82,6 +84,13 @@ function App() {
         </Routes>
       </div>
     </Router>
+    <footer>
+      <span className='footer-content'>
+        <a href='https://github.com/laurenx1'> 
+            <img src={gitLogo} className='github'/>
+        </a>
+      </span>
+    </footer>
     </>
   )
 }

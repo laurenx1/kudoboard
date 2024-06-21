@@ -3,17 +3,10 @@ body {
   }
   
 .new-card-form {
-    /* position: fixed; */
-    /* top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); */
     background: #fff;
     padding: 20px;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-    /* z-index: 1001; */
     max-width: 600px;
     width: 100%;
-    /* z-index: 1001; */
     max-height: 80%; 
     overflow-y: auto; 
     position: relative; 
@@ -49,9 +42,6 @@ z-index: 1000;
     background-color: none;
   }
 
-  /* .close-btn:hover {
-    color: red; 
-  } */
 
 
   .submit, .gif-submit {

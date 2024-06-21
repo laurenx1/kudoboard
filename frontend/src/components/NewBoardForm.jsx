@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import './NewBoardForm.css'
-// https://kudos-board-exemplar.onrender.com/
 
 const NewBoardForm = ({ setCreateNew, addBoard }) => {
     // state for form fields

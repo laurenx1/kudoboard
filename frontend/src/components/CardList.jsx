@@ -14,7 +14,7 @@ const CardList = ({ cards, setCards }) => {
 
 
     const onUpvoteCard = (cardId) => {
-        const UpdatedCards = cards.map((card) => 
+        const updatedCards = cards.map((card) => 
             card.id === cardId ? {...card, upvotes: card.upvotes + 1 } : card
         );
         setCards(updatedCards);

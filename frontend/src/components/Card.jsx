@@ -29,6 +29,7 @@ const Card = ({ card, onDeleteCard, onUpvoteCard }) => {
             <div className='btn-container'>
                 <button className='upvote-btn' onClick={handleUpvote}> ⇪ </button>
                 <button className='delete-btn' onClick={handleDelete}>🗑️</button>
+                <button className='comments-btn'>💬</button>
             </div>
         </div>
     )
