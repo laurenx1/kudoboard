@@ -9,10 +9,10 @@ const CardList = ({boardOpened}) => {
     useEffect(() => {
     let cardsUrl = `http://localhost:3000/boards/${boardOpened.id}/cards`
     fetch(cardsUrl) 
-        .then(response => response.json)
+        .then(response => response.json())
         .then(data => setCards(data))
         .catch(error => console.error('Error fetching boards:', error));
-    }, [])
+    }, [boardOpened])
 
     console.log(cards);
     return (

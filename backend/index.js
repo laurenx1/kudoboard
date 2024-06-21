@@ -96,7 +96,7 @@ app.delete('/boards/:id', async (req, res) => {
 
 
 // Get all cards for a specific board
-app.get('boards/:boardId/cards', async (req, res) => {
+app.get('/boards/:boardId/cards', async (req, res) => {
   const boardId = parseInt(req.params.boardId); 
   try {
     const cards = await prisma.card.findMany({
