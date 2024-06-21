@@ -97,6 +97,7 @@ app.delete('/boards/:id', async (req, res) => {
 
 // Get all cards for a specific board
 app.get('/boards/:boardId/cards', async (req, res) => {
+  console.log(req.params.boardId);
   const boardId = parseInt(req.params.boardId); 
   try {
     const cards = await prisma.card.findMany({
@@ -113,9 +114,11 @@ app.get('/boards/:boardId/cards', async (req, res) => {
 
 
 // create a new card 
-app.post('boards/:boardId/cards', async (req, res) => {
+app.post('/boards/:boardId/cards', async (req, res) => {
+  // console.log("post", req.params.boardId);
   const { boardId } = req.params; 
   const { title, description, author, gif } = req.body;
+  console.log(req.body);
   try {
     const newCard = await prisma.card.create({
       data: {
@@ -134,33 +137,33 @@ app.post('boards/:boardId/cards', async (req, res) => {
 }); 
 
 
-// // delete a card
-// app.delete('/cards/:id', async (req, res) => {
-//   const cardId = parseInt(req.params.id);
-//   try {
-//     await prisma.card.delete({
-//       where: { id: cardId }
-//     });
-//     res.status(204).send();
-//   } catch (error) {
-//     console.error('Error deleting card:', error);
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// });
+// delete a card
+app.delete('/cards/:id', async (req, res) => {
+  const cardId = parseInt(req.params.id);
+  try {
+    await prisma.card.delete({
+      where: { id: cardId }
+    });
+    res.status(204).send();
+  } catch (error) {
+    console.error('Error deleting card:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
-// // change the number of upvotes a card has
-// app.patch('/cards/:id', async (req, res) => {
-//   const cardId = parseInt(req.params.id);
-//   const newUpvotes = parseInt(req.query.upvotes);
+// change the number of upvotes a card has
+app.patch('/cards/:id', async (req, res) => {
+  const cardId = parseInt(req.params.id);
+  const newUpvotes = parseInt(req.query.upvotes);
 
-//   const updateCard = await prisma.card.update({
-//     where: {
-//       id: cardId,
-//     }, 
-//     data: {
-//       upvotes: newUpvotes
-//     },
-//   })
-//   res.status(204).send();
-// });
+  const updateCard = await prisma.card.update({
+    where: {
+      id: cardId,
+    }, 
+    data: {
+      upvotes: newUpvotes
+    },
+  })
+  res.status(204).send();
+});

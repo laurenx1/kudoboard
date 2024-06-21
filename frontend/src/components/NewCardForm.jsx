@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import './NewCardForm.css';
-import FormGif from './FormGif'
-import { Form } from 'react-router-dom';
 
-const NewCardForm = ({setCreateNewCard }) => {
+
+const NewCardForm = ({ setCreateNewCard, addCard }) => {
     const [title, setTitle] = useState(''); 
     const [description, setDescription] = useState('');
-    const [owner, setOwner] = useState('');
-    const [showGifForm, setShowGifForm] = useState(false)
+    const [author, setAuthor] = useState('');
+    const [gifQuery, setGifQuery] = useState('');
+    const [gifs, setGifs] = useState([]);
+    const [selectedGif, setSelectedGif] = useState(null);
 
     const apiKey=import.meta.env.VITE_GIPHY_API_KEY;
 
@@ -15,17 +16,38 @@ const NewCardForm = ({setCreateNewCard }) => {
         setCreateNewCard(false);
     }
 
+
+    const searchGiphy = () => {
+        fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${gifQuery}&limit=6`)
+            .then(response => response.json())
+            .then(data =>setGifs(data.data))
+            .catch(error => console.error('Error fetching GIFs:', error));
+    };
+
+
+    const handleGifSelect = (gifUrl) => {
+        setSelectedGif(gifUrl);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault(); 
 
-        console.log({title, description, owner});
+        const newCard = {
+            title, 
+            description, 
+            author, 
+            gif: selectedGif,
+            upVotes: 0
+        }
+
+        addCard(newCard);
         setTitle('');
         setDescription('');
-        setOwner('');
-    }
-
-    const handleShowGifForm = () => {
-        setShowGifForm(true);
+        setAuthor('');
+        setGifQuery('');
+        setGifs([]);
+        setSelectedGif(null);
+        setCreateNewCard(false);
     }
 
 
@@ -37,11 +59,23 @@ const NewCardForm = ({setCreateNewCard }) => {
                 <form onSubmit={handleSubmit}>
                     <input type='text' required value={title} onChange={(e => setTitle(e.target.value))} placeholder='enter title here'/>
                     <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder='enter description'/>
-                    <button className='show-gif-form-btn' onClick={handleShowGifForm}>Find GIF</button>
-                    <input type='text' required value={owner} onChange={(e => setOwner(e.target.value))} placeholder='enter your name'/>
+                    <input type='text' required value={author} onChange={(e => setAuthor(e.target.value))} placeholder='enter your name'/>
+                    <input type='text' value={gifQuery} onChange={(e) => setGifQuery(e.target.value)} placeholder='Search GIFs...'/>
+                    <button type='button' onClick={searchGiphy}>Search GIFs</button>
+                    <div className='gif-options'>
+                        {gifs.map(gif => (
+                            <img
+                                key={gif.id}
+                                src={gif.images.fixed_height.url}
+                                alt={gif.title}
+                                onClick={() => handleGifSelect(gif.images.fixed_height.url)}
+                                className={selectedGif === gif.images.fixed_height.url ? 'selected' : ''}
+                            />
+                        ))}
+                    </div>
                     <button className='submit' type='submit'>Create Card</button>
                 </form>
-                {showGifForm && <FormGif setShowGifForm={setShowGifForm}/>}
+
             </div>
         </div>
     );
