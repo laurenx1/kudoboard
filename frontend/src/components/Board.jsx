@@ -1,10 +1,16 @@
 import React from 'react'
 import './Board.css'
 
-const Board = ({ title, category, author, imageUrl, onDeleteBoard}) => {
+const Board = ({ title, category, author, imageUrl, onDeleteBoard, whichBoard, setOpenBoard, setBoardOpened }) => {
     const handleDelete = () => {
         onDeleteBoard(); 
     }
+
+    const handleViewBoard = () => {
+        setOpenBoard(true);
+        setBoardOpened(whichBoard);
+    }
+
 
 
     return (
@@ -14,7 +20,7 @@ const Board = ({ title, category, author, imageUrl, onDeleteBoard}) => {
             <p>{category}</p>
             <p>{author}</p>
             <div className='btn-container'>
-                <button className='view-btn'>View Board</button>
+                <button className='view-btn' onClick={handleViewBoard}>View Board</button>
                 <button className='delete-btn' onClick={handleDelete}>Delete Board</button>
             </div>
         </div>
