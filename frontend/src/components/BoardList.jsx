@@ -3,13 +3,18 @@ import ReactDOM from "react-dom";
 import Board from './Board'
 import './BoardList.css'
 
-import CardList from './CardList'
+// import CardList from './CardList'
+import { useNavigate } from "react-router-dom";
 
 
 const BoardList = ({boards, onDeleteBoard}) => {
 
-  const [openBoard, setOpenBoard] = useState(false); 
-  const [boardOpened, setBoardOpened] = useState(null); 
+
+  const navigate = useNavigate();
+
+  const handleViewBoard = (boardId) => {
+    navigate(`/viewBoard/${boardId}`);
+  }
 
 
   console.log(boards);
@@ -25,16 +30,15 @@ const BoardList = ({boards, onDeleteBoard}) => {
             author={board.author}
             imageUrl={board.image}
             onDeleteBoard={() => onDeleteBoard(board.id)}
-            setOpenBoard={setOpenBoard}
-            setBoardOpened={setBoardOpened}
+            handleViewBoard={handleViewBoard}
             >
           </Board>
 
         ))}
-        {openBoard && <CardList boardOpened={boardOpened}></CardList>}
 
       </div>
       </>
     );
-  }
+  };
+  
   export default BoardList;

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 
 import './App.css'
@@ -6,6 +7,7 @@ import './App.css'
 import SearchBar from './components/SearchBar'
 import NewBoardForm from './components/NewBoardForm'
 import BoardList from './components/BoardList'
+import ViewBoard from './components/ViewBoard'
 
 import img from './assets/kudoboard_logo.png'
 
@@ -61,6 +63,7 @@ function App() {
 
   return (
     <>
+    <Router>
       <div>
         <img src={img} className='kudo-logo' style={{width: 200, height:116}}/>
         <SearchBar 
@@ -69,8 +72,12 @@ function App() {
           setCreateNew={setCreateNew}>
         </SearchBar>
         {createNew && <NewBoardForm setCreateNew={setCreateNew} addBoard={addBoard} ></NewBoardForm>}
-        <BoardList boards={boards} onDeleteBoard={deleteBoard}></BoardList>
+        <Routes>
+          <Route path='/' element={<BoardList boards={boards} onDeleteBoard={deleteBoard} />} />
+          <Route path='/viewBoard/:boardId' element={<ViewBoard />} />
+        </Routes>
       </div>
+    </Router>
     </>
   )
 }

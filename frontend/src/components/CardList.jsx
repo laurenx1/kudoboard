@@ -3,16 +3,16 @@ import ReactDOM from "react-dom";
 import Card from './Card'
 
 
-const CardList = ({boardOpened}) => {
+const CardList = ({ boardId }) => {
     const [cards, setCards] = useState([]);
 
     useEffect(() => {
-    let cardsUrl = `http://localhost:3000/boards/${boardOpened.id}/cards`
+    let cardsUrl = `http://localhost:3000/boards/${boardId}/cards`
     fetch(cardsUrl) 
         .then(response => response.json())
         .then(data => setCards(data))
         .catch(error => console.error('Error fetching boards:', error));
-    }, [boardOpened])
+    }, [boardId])
 
     console.log(cards);
     return (
