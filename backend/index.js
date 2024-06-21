@@ -112,26 +112,26 @@ app.get('/boards/:boardId/cards', async (req, res) => {
 
 
 
-// // create a new card 
-// app.post('boards/:boardId/cards', async (req, res) => {
-//   const { boardId } = req.params; 
-//   const { title, description, author, gif } = req.body;
-//   try {
-//     const newCard = await prisma.card.create({
-//       data: {
-//         boardId: parseInt(boardId, 10), 
-//         title, 
-//         description, 
-//         author, 
-//         gif,
-//       }, 
-//     });
-//     res.json(newCard)
-//   } catch (error) {
-//     console.error('Error creating card:', error);
-//     res.status(500).json({ error: 'Internal server error'})
-//   }
-// }); 
+// create a new card 
+app.post('boards/:boardId/cards', async (req, res) => {
+  const { boardId } = req.params; 
+  const { title, description, author, gif } = req.body;
+  try {
+    const newCard = await prisma.card.create({
+      data: {
+        boardId: parseInt(boardId, 10), 
+        title, 
+        description, 
+        author, 
+        gif,
+      }, 
+    });
+    res.json(newCard)
+  } catch (error) {
+    console.error('Error creating card:', error);
+    res.status(500).json({ error: 'Internal server error'})
+  }
+}); 
 
 
 // // delete a card

@@ -66,14 +66,18 @@ function App() {
     <Router>
       <div>
         <img src={img} className='kudo-logo' style={{width: 200, height:116}}/>
-        <SearchBar 
-          setQuery={setQuery} 
-          setFilter={setFilter} 
-          setCreateNew={setCreateNew}>
-        </SearchBar>
-        {createNew && <NewBoardForm setCreateNew={setCreateNew} addBoard={addBoard} ></NewBoardForm>}
         <Routes>
-          <Route path='/' element={<BoardList boards={boards} onDeleteBoard={deleteBoard} />} />
+          <Route path='/' element={
+            <>
+              <SearchBar 
+                setQuery={setQuery} 
+                setFilter={setFilter} 
+                setCreateNew={setCreateNew}>
+              </SearchBar>
+              {createNew && <NewBoardForm setCreateNew={setCreateNew} addBoard={addBoard} ></NewBoardForm>}
+              <BoardList boards={boards} onDeleteBoard={deleteBoard} />
+            </>
+          } />
           <Route path='/viewBoard/:boardId' element={<ViewBoard />} />
         </Routes>
       </div>

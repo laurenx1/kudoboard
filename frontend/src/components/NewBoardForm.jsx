@@ -39,21 +39,21 @@ const NewBoardForm = ({ setCreateNew, addBoard }) => {
           <button className='close-btn' onClick={handleClose}>X</button>
           <h2>Create a New Board</h2>
           <form onSubmit={handleSubmit}>
-          <label>Title:</label>
-          <input type='text' required value={title} onChange={(e) => setTitle(e.target.value)}/>
-          <label>Category:</label>
-          <select required value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value>Select a category</option>
-            <option value='Recent'>Recent</option>
-            <option value='Celebration'>Celebration</option>
-            <option value='Thank You'>Thank You</option>
-            <option value='Inspiration'>Inspiration</option>
-          </select>
-          <label>Author:</label>
-          <input type='text' value={author} onChange={(e) => setAuthor(e.target.value)}/>
-          <label>Description:</label>
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)}/>
-          <button className='submit' type='submit'>Create Board</button>
+            <label>Title:</label>
+            <input type='text' required value={title} onChange={(e) => setTitle(e.target.value)}/>
+            <label>Category:</label>
+            <select required value={category} onChange={(e) => setCategory(e.target.value)}>
+              <option value>Select a category</option>
+              <option value='Recent'>Recent</option>
+              <option value='Celebration'>Celebration</option>
+              <option value='Thank You'>Thank You</option>
+              <option value='Inspiration'>Inspiration</option>
+            </select>
+            <label>Author:</label>
+            <input type='text' value={author} onChange={(e) => setAuthor(e.target.value)}/>
+            <label>Description:</label>
+            <textarea value={description} onChange={(e) => setDescription(e.target.value)}/>
+            <button className='submit' type='submit'>Create Board</button>
         </form>
         </div>
       </div>

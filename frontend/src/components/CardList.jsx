@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom";
 import Card from './Card'
 
+import './CardList.css'
+
 
 const CardList = ({ boardId }) => {
     const [cards, setCards] = useState([]);
@@ -17,7 +19,6 @@ const CardList = ({ boardId }) => {
     console.log(cards);
     return (
       <>
-      <button className='new-card-btn'>Make New Card</button>
       <div className='card-list'>
         {cards.map((card, index) => (
           <Card></Card>
