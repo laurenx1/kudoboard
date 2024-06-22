@@ -10,7 +10,7 @@ Deployed Application (optional): [Kudos Board Deployed Site](https://kudoboard-f
 
 #### CORE FEATURES
 
-- [ ] **Home Page**
+- [X ] **Home Page**
   - [X ] Displays header, banner, search, board grid, and footer.
   - [ X] Displays preview of all boards on initial page load.
     - [X ] Boards previews should show an image/gif and board title.
