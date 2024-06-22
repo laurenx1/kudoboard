@@ -10,7 +10,7 @@ const ViewBoard = () => {
 
 
     useEffect(() => {
-        let cardsUrl = `http://localhost:3000/boards/${boardId}/cards`
+        let cardsUrl = `${import.meta.env.VITE_BACKEND_URL}/boards/${boardId}/cards`
         fetch(cardsUrl) 
             .then(response => response.json())
             .then(data => setCards(data))
@@ -20,7 +20,7 @@ const ViewBoard = () => {
 
     const addCard = (newCard) => {
         console.log("newcard in addcard", newCard);
-        fetch(`http://localhost:3000/boards/${boardId}/cards`, {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/boards/${boardId}/cards`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

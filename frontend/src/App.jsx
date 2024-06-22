@@ -22,7 +22,7 @@ function App() {
 
 
   useEffect(() => {
-    let url = 'http://localhost:3000/boards'
+    let url = import.meta.env.VITE_BACKEND_URL + '/boards'
     if (query) {
       url += `?query=${encodeURIComponent(query)}`;
     }
@@ -37,7 +37,7 @@ function App() {
 
 
   const addBoard = async (newBoard) => {
-    fetch('http://localhost:3000/boards', {
+    fetch(import.meta.env.VITE_BACKEND_URL + '/boards', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ function App() {
   
   const deleteBoard = async (boardId) => {
     try {
-      await fetch(`http://localhost:3000/boards/${boardId}`, {
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}/boards/${boardId}`, {
         method: 'DELETE'
       });
       const updatedBoards = boards.filter((board) => board.id !== boardId);

@@ -4,7 +4,7 @@ import './Card.css'
 
 const Card = ({ card, onDeleteCard, onUpvoteCard }) => {
     const handleDelete = () => {
-        fetch(`http://localhost:3000/cards/${card.id}`, {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/cards/${card.id}`, {
             method: 'DELETE',
         })
         .then(() => onDeleteCard(card.id))
@@ -12,7 +12,7 @@ const Card = ({ card, onDeleteCard, onUpvoteCard }) => {
     };
 
     const handleUpvote = () => {
-        fetch(`http://localhost:3000/cards/${card.id}?upvotes=${card.upvotes + 1}`, {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/cards/${card.id}?upvotes=${card.upvotes + 1}`, {
             method: 'PATCH',
         })
         .then(() => onUpvoteCard(card.id))
