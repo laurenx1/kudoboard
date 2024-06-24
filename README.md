@@ -4,7 +4,7 @@
 
 Submitted by: **LAUREN PRYOR**
 
-Deployed Application (optional): [Kudos Board Deployed Site](https://kudoboard-front.onrender.com/viewBoard/2)
+Deployed Application (optional): [Kudos Board Deployed Site](https://kudoboard-front.onrender.com/)
 
 ### Application Features
 
